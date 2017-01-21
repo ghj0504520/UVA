@@ -1,28 +1,26 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-void prin(string seq,int s,int d)
-{
-	for(int i=d;i>=s;i--)
-		cout<<seq[i];
-}
 int main()
 {
-	int n;
-	string seq;
-	while(cin>>n,n)
+	int N;
+	string S;
+	while(cin>>N,N)
 	{
-		cin>>seq;
-		int mv,s,d,len=seq.size();
-		mv=len/n;
-		s=0,d=mv-1;
-		s-=mv,d-=mv;
-		while(d<len-1)
+		cin>>S;
+		int len = S.size();
+		int L=len/N;
+
+		int start=0,dest=start+L;
+
+		for(int i=0 ; i<N ; i++)
 		{
-			prin(seq,s+=mv,d+=mv);
-		}
-		cout<<'\n';
+			reverse(S.begin()+start,S.begin()+dest);
+			start=dest;
+			dest=start+L;
+		}cout<<S<<"\n";
 	}
 	return 0;
 }
